@@ -13,7 +13,7 @@ def start_folder_monitor(tenant_id, port, workflow_name):
     print(f"#### Started FM of {tenant_id}")
     host = os.environ.get('SERVER_IP')
     api_params = {}
-    request_api = f'http://{host}:{port}/rest/engine/default/process-definition/key/{workflow_name}/start'
+    request_api = f'https://{host}:{port}/rest/engine/default/process-definition/key/{workflow_name}/start'
     headers = {'Content-type': 'application/json; charset=utf-8'}
     print(f"#### Hitting the camunda api of {request_api}")
     response = requests.post(request_api, json=api_params, headers=headers)
