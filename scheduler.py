@@ -20,7 +20,7 @@ def start_folder_monitor(tenant_id, port, workflow_name):
     request_api = f'http://{host}:{port}/rest/engine/default/process-definition/key/{workflow_name}/start'
     headers = {'Content-type': 'application/json; charset=utf-8'}
     print(f"#### Hitting the camunda api of {request_api}")
-    response = requests.post(request_api, json=api_params, headers=headers,verify=False)
+    response = requests.post(request_api, json=api_params, headers=headers)
     response_dict = json.loads(response.text)
     print(f"#### {tenant_id} FM Response Dict", response_dict)
 
