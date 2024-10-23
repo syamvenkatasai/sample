@@ -1,7 +1,3 @@
-"""
-@author: Gopi Teja
-Created Date: 2022-11-23
-"""
 
 import json
 import schedule
@@ -28,8 +24,8 @@ def start_folder_monitor(tenant_id, port, workflow_name):
 
 def hit_get_files_from_sftp():
         print("Hitting get_files_from_sftp route...")
-        host = 'foldermonitor'
-        port = 443
+        host = os.environ.get('FHOST')
+        port = os.environ.get('FPORT')
         request_api = f'https://{host}:{port}/get_files_from_sftp'
 
         # Headers and payload
@@ -45,11 +41,12 @@ def hit_get_files_from_sftp():
 
 
 # Call that function
+portc = os.environ.get('FHOST')
 schedule.every(5).seconds.do(start_folder_monitor,
-                              'hdfc','8080', 'hdfc_folder_monitor')
+                              'hdfc',portc, 'hdfc_folder_monitor')
 
 # This below line code is useful for hitting the camunda work flow for master data upload
-#schedule.every(15).seconds.do(start_folder_monitor,'hdfc','8080', 'folder_monitor_sftp')
+#schedule.every(15).seconds.do(start_folder_monitor,'hdfc',portc, 'folder_monitor_sftp')
 
 
 
