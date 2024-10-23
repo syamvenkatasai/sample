@@ -33,7 +33,7 @@ def hit_get_files_from_sftp():
         payload = {}  # Add any necessary data for the route if required
 
         try:
-            response = requests.post(request_api, json=payload, headers=headers, verify=False)
+            response = requests.post(request_api, json=payload, headers=headers)
             response_data = response.json()
             print(f"Response from get_files_from_sftp: {response_data}")
         except Exception as e:
